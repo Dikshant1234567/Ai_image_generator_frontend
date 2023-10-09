@@ -3,13 +3,14 @@ import Loader from "./Loader";
 import { useEffect } from "react";
 import axios from "axios";
 // import { profileImage } from "../assests/profile.png";
+import { ArrowDownFromLine, UserCircle2 } from "lucide-react";
 
 function Home() {
   const [myPostData, setMyPostData] = useState([]);
 
   // fetch post api call
 
-  const ServerUrl = "https://ai-imagegenerator-backend.onrender.com"
+  const ServerUrl = "https://ai-imagegenerator-backend.onrender.com";
   const postApi = async () => {
     const resp = await axios.get(`${ServerUrl}/api/v1/post`);
     const { data } = resp.data;
@@ -52,50 +53,47 @@ function Home() {
         />
       </div>
 
-      <section className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 sm:my-0 ">
-        {!myPostData ? (
-          <Loader />
-        ) : (
-          myPostData.map((post, index) => {
-            return (
-              <div
-                key={index}
-                className="relative my-8 group transition-all ease-in-out border-gray-400 border-[1px] shadow-lg shadow-gray-300"
-              >
-                <img
-                  src={post.photo}
-                  alt="post"
-                  className="bg-white mix-blend-darken"
-                />
-                <div className="w-[100%] absolute bottom-0 p-4 bg-[#060606e3] hidden transition ease-in-out delay-500 group-hover:block duration-300">
-                  <p className="font-bold capitalize">{post.prompt}</p>
-                  <div className="flex items-center gap-2 mt-2">
-                    <img
-                      src="/src/assests/profile.png"
-                      style={{ borderRadius: "50%" }}
-                      className="w-8 object-cover"
-                      alt=""
-                    />
-                    <p className="text-sm capitalize font-[300]">{post.name}</p>
-                    <img
-                      src="/src/assests/download.png"
-                      style={{ borderRadius: "50%" }}
-                      className=" absolute right-4 bottom-4 bg-white border-none w-8 object-cover cursor-pointer"
-                      alt="download"
-                      onClick={() => downloadHandler(post.photo)}
-                    />
-                  </div>
+      {myPostData.length > 1 ? (
+        <section className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 sm:my-0  ">
+          {myPostData.map((post, index) => (
+            <div
+              key={index}
+              className="relative my-8 group transition-all ease-in-out border-gray-400 border-[1px] shadow-lg shadow-gray-300"
+            >
+              <img
+                src={post.photo}
+                alt="post"
+                className="bg-white mix-blend-darken"
+              />
+              <div className="w-[100%] absolute bottom-0 p-4 bg-[#060606e3] hidden transition ease-in-out delay-500 group-hover:block duration-300">
+                <p className="font-bold capitalize">{post.prompt}</p>
+                <div className="flex items-center gap-2 mt-2">
+                  <UserCircle2
+                    strokeWidth={1.75}
+                    className="w-10  text-white"
+                  />
+                  <p className="text-sm capitalize font-[300]">{post.name}</p>
+
+                  <ArrowDownFromLine
+                    strokeWidth={3}
+                    className="absolute right-4 bottom-4  border-none w-8 cursor-pointer  text-white"
+                    onClick={() => downloadHandler(post.photo)}
+                  />
                 </div>
               </div>
-            );
-          })
-        )}
+            </div>
+          ))}
 
-        <div className="p-4 border-blue-400 rounded-xl"></div>
-      </section>
+          <div className="p-4 border-blue-400 rounded-xl"></div>
+        </section>
+      ) : (
+        <span className="w-full bg-slate-700 h-52">
+          <Loader />
+        </span>
+      )}
+
       <hr class="bg-gray-100 h-[2px] mt-2" />
       <footer className=" grid place-items-center w-full bg-gray-50 py-4 -mb-4">
-        
         <h6>
           This is an AI image Generator made with the help of OpenAi Api for my
           personal learning purpose.

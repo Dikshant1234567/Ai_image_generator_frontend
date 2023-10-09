@@ -132,7 +132,7 @@ function Create() {
 
       <div className="border-gray-300 border-[1px] w-[300px] h-[300px] mt-4 rounded-lg overflow-hidden relative">
         {showLoader && (
-          <span className="absolute top-1/2 shadow-gray-300 shadow-xl   z-20 right-1/2 text-white">
+          <span className="absolute top-[50%] shadow-gray-300 shadow-xl   z-20 right-1/2 text-white">
             <Loader bgColor="bg-white" />
           </span>
         )}

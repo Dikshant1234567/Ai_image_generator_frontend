@@ -2,12 +2,9 @@ import React from "react";
 
 const Loader = (bgColor) => {
   return (
-    <div class={`spinner ${bgColor}`}>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+    <span >
+      <div className={`spinner ${bgColor} text-white`}></div>
+    </span>
   );
 };
 

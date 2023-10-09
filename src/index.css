@@ -28,50 +28,19 @@ h6 {
 /* loader CSS */
 
 .spinner {
-  width: 8px;
-  height: 8px;
-  animation: spinner-o824ag 1.2s infinite linear;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, #000000 94%, #0000) top/9px 9px
+      no-repeat,
+    conic-gradient(#0000 30%, #000000);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 0);
+  animation: spinner-c7wet2 1.2s infinite linear;
   margin: auto;
 }
 
-.spinner div {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #000000;
-  border-radius: 50%;
-  animation: spinner-vse6n7 1.5s infinite ease;
-}
-
-.spinner div:nth-child(1) {
-  --rotation: 90;
-}
-
-.spinner div:nth-child(2) {
-  --rotation: 180;
-}
-
-.spinner div:nth-child(3) {
-  --rotation: 270;
-}
-
-.spinner div:nth-child(4) {
-  --rotation: 360;
-}
-
-@keyframes spinner-vse6n7 {
-  0%,
+@keyframes spinner-c7wet2 {
   100% {
-    transform: rotate(calc(var(--rotation) * 1deg)) translateY(0);
-  }
-
-  50% {
-    transform: rotate(calc(var(--rotation) * 1deg)) translateY(300%);
-  }
-}
-
-@keyframes spinner-o824ag {
-  to {
-    transform: rotate(360deg);
+    transform: rotate(1turn);
   }
 }
